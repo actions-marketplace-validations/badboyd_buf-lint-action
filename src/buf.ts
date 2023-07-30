@@ -49,7 +49,15 @@ interface ExecException {
 // can write out the raw content that users see on the command line.
 // We do NOT attempt to reformat the structured FileAnnotation because
 // this approach is prone to differentiate from the raw output.
-export function lint(binaryPath: string, input: string): LintResult | Error {
+export function lint(
+  binaryPath: string,
+  input: string,
+  service: string
+): LintResult | Error {
+  if (service != "") {
+    input = input + " --path " + service;
+  }
+
   const rawOutput = runLintCommand(`${binaryPath} lint ${input}`);
   if (isError(rawOutput)) {
     return rawOutput;
@@ -60,6 +68,7 @@ export function lint(binaryPath: string, input: string): LintResult | Error {
   if (isError(jsonOutput)) {
     return jsonOutput;
   }
+
   const fileAnnotations = parseLines(
     jsonOutput
       .trim()

@@ -63,6 +63,7 @@ async function runLint(): Promise<null | Error> {
       message: "an input was not provided",
     };
   }
+
   const binaryPath = await io.which("buf", true);
   if (binaryPath === "") {
     return {
@@ -97,7 +98,8 @@ async function runLint(): Promise<null | Error> {
     process.env.NETRC = netrcPath;
   }
 
-  const result = lint(binaryPath, input);
+  const servicePath = core.getInput("path");
+  const result = lint(binaryPath, input, servicePath);
   if (isError(result)) {
     return result;
   }

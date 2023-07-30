@@ -34,10 +34,11 @@ We recommend using [`buf-setup-action`][buf-setup] to install it (as in the exam
 
 ## Configuration
 
-Parameter | Description | Required | Default
-:---------|:------------|:---------|:-------
-`input` | The path of the [Buf input][input] you want to lint check | | `.`
-`buf_token` | The Buf [authentication token][token] used for any private [input] | ✅ |
+| Parameter   | Description                                                            | Required | Default |
+| :---------- | :--------------------------------------------------------------------- | :------- | :------ |
+| `input`     | The path of the [Buf input][input] you want to lint check, root folder |          | `.`     |
+| `buf_token` | The Buf [authentication token][token] used for any private [input]     | ✅        |
+| `path`      | Service folder                                                         |          | ` `     |
 
 > These parameters are derived from [`action.yml`](./action.yml)
 
